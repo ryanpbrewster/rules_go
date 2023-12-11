@@ -136,6 +136,15 @@ go_repository(
     version = "v0.0.0-20221024183307-1bc688fe9f3e",
 )
 
+go_repository(
+    name = "org_golang_google_grpc_cmd_protoc_gen_go_grpc",
+    build_file_proto_mode = "disable",
+    importpath = "google.golang.org/grpc/cmd/protoc-gen-go-grpc",
+    sum = "h1:rNBFJjBCOgVr9pWD7rs/knKL4FRTKgpZmsRfV214zcA=",
+    version = "v1.3.0",
+)
+
+
 # TODO(sluongng): Gazelle v0.25.0 switched to static dependency resolution which cause
 # build files generation in external dependencies to wrongly resolve these repositories.
 # We should investigate in Gazelle why this happen and fix it.
