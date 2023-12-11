@@ -21,7 +21,7 @@ import (
 )
 
 type greeter struct {
-  pb.UnimplementedGreetServer
+	pb.UnimplementedGreetServer
 }
 
 func GreetServer() pb.GreetServer {
