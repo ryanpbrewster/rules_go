@@ -22,18 +22,6 @@ go_proto_library(
     ],
 )
 
-# This is a test that the v2 protobuf-gen-go-grpc compiler also works
-go_proto_library(
-    name = "color_service_go_proto_v2",
-    compilers = ["@io_bazel_rules_go//proto:go_grpc_v2"],
-    importpath = "github.com/bazelbuild/rules_go/tests/integration/googleapis/color_service_proto",
-    proto = ":color_service_proto",
-    deps = [
-        "@org_golang_google_genproto//googleapis/rpc/status",
-        "@org_golang_google_genproto//googleapis/type/color",
-    ],
-)
-
 go_library(
     name = "color_service",
     srcs = ["color_service.go"],
