@@ -101,8 +101,10 @@ def get_mode(ctx, go_toolchain, cgo_context_info, go_config_info):
             pgoprofile = go_config_info.pgoprofile.files.to_list()[0]
 
     # TODO(jayconrod): check for more invalid and contradictory settings.
-    if pure and race:
+    if pure and race and (not goos == "darwin"):
         fail("race instrumentation can't be enabled when cgo is disabled. Check that pure is not set to \"off\" and a C/C++ toolchain is configured.")
+    if pure and race and (not goos == "darwin" or goarch != go_toolchain.sdk.goarch):
+        fail("race instrumentation can't be enabled when cgo disabled and SDK architecture ({sdk}) doesn't match target ({target}) architecture.".format(sdk=go_toolchain.sdk.goarch, target=goarch))
     if pure and msan:
         fail("msan instrumentation can't be enabled when cgo is disabled. Check that pure is not set to \"off\" and a C/C++ toolchain is configured.")
     if pure and linkmode in LINKMODES_REQUIRING_EXTERNAL_LINKING:
